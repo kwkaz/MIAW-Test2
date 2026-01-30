@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Chat Test on GitHub Pages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            
+            /* --- 背景設定の変更箇所 --- */
+            
+            /* 背景画像のURLを指定 (例: 'background.jpg' や 'https://example.com/img.png') */
+            background-image: url('background.png');
+            
+            /* 画像をアスペクト比を保ったまま画面内に全て収める */
+            background-size: contain;
+            
+            /* 画像の中心を基準に表示 */
+            background-position: center;
+            
+            /* 画像を繰り返さない */
+            background-repeat: no-repeat;
+            
+            /* 画像が読み込まれない場合のフォールバック色 */
+            background-color: #ffffff;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            /* 背景画像の上でも文字が読めるよう、コンテナは白背景のままにします */
+            background: rgba(255, 255, 255, 0.9); /* 少し透過させるとおしゃれです (0.9) */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <script type='text/javascript'>
+        function initEmbeddedMessaging() {
+            try {
+                embeddedservice_bootstrap.settings.language = 'ja'; 
+    
+                embeddedservice_bootstrap.init(
+                    '00DIo000000LOyt',
+                    'MaintenanceSupportAgent_for_External_Site',
+                    'https://aflacjpx--fscpar0.sandbox.my.site.com/ESWMaintenanceSupportAgen1769739550117',
+                    {
+                        scrt2URL: 'https://aflacjpx--fscpar0.sandbox.my.salesforce-scrt.com'
+                    }
+                );
+            } catch (err) {
+                console.error('Error loading Embedded Messaging: ', err);
+            }
+        };
+    </script>
+    <script type='text/javascript' src='https://aflacjpx--fscpar0.sandbox.my.site.com/ESWMaintenanceSupportAgen1769739550117/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+</body>
+</html>
