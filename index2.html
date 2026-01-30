@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Chat Test on GitHub Pages</title>
+    <style>
+        /* 共通設定 */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 初期状態（認証前）のレイアウト */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        /* 認証後の背景表示用エリア */
+        #content {
+            display: none; /* 初期は非表示 */
+            width: 100%;
+            background-image: url('aanetbg.jpeg');
+            background-size: 100% auto;
+            background-position: top center;
+            background-repeat: no-repeat;
+        }
+
+        input { padding: 8px; border-radius: 4px; border: 1px solid #ccc; margin-bottom: 10px; }
+        button { padding: 8px 16px; border-radius: 4px; border: none; background: #007bff; color: white; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+
+    <div id="auth-form" class="container">
+        <h2>パスワードを入力してください</h2>
+        <input type="password" id="pass-input" placeholder="Password">
+        <br>
+        <button onclick="checkPassword()">送信</button>
+    </div>
+
+    <div id="content"></div>
+
+    <script type='text/javascript'>
+        const CORRECT_PASSWORD = "Salesforce12345"; 
+
+        function checkPassword() {
+            const input = document.getElementById('pass-input').value;
+            if (input === CORRECT_PASSWORD) {
+                // 認証成功時の表示切り替え
+                document.getElementById('auth-form').style.display = 'none';
+                
+                // bodyのレイアウト設定を解除してスクロール可能にする
+                document.body.style.display = 'block';
+                document.body.style.height = 'auto';
+
+                const content = document.getElementById('content');
+                content.style.display = 'block';
+
+                // 背景画像の高さに合わせてスクロール領域を確保
+                adjustContentHeight();
+                
+                loadChatScript(); // チャット起動
+            } else {
+                alert("パスワードが正しくありません");
+            }
+        }
+
+        function adjustContentHeight() {
+            const img = new Image();
+            img.src = 'aanetbg.jpeg';
+            img.onload = function() {
+                const content = document.getElementById('content');
+                // 画面幅に基づいた画像の表示高さを計算
+                const ratioHeight = (window.innerWidth / img.width) * img.height;
+                content.style.height = ratioHeight + 'px';
+            };
+        }
+
+        // リサイズ時にも高さを再計算
+        window.addEventListener('resize', () => {
+            if (document.getElementById('content').style.display === 'block') {
+                adjustContentHeight();
+            }
+        });
+
+        function loadChatScript() {
+            const script = document.createElement('script');
+            script.src = 'https://aflacjpx--fscpar0.sandbox.my.site.com/ESWMaintenanceSupportAgen1769739550117/assets/js/bootstrap.min.js';
+            script.onload = initEmbeddedMessaging;
+            document.body.appendChild(script);
+        }
+
+        function initEmbeddedMessaging() {
+            try {
+                embeddedservice_bootstrap.settings.language = 'ja'; 
+                embeddedservice_bootstrap.init(
+                    '00DIo000000LOyt',
+                    'MaintenanceSupportAgent_for_External_Site',
+                    'https://aflacjpx--fscpar0.sandbox.my.site.com/ESWMaintenanceSupportAgen1769739550117',
+                    {
+                        scrt2URL: 'https://aflacjpx--fscpar0.sandbox.my.salesforce-scrt.com'
+                    }
+                );
+            } catch (err) {
+                console.error('Error loading Embedded Messaging: ', err);
+            }
+        };
+    </script>
+</body>
+</html>
